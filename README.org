@@ -1,0 +1,26 @@
+#+OPTIONS: toc:nil num:nil author:nil creator:nil \n:nil |:t
+#+OPTIONS: @:t ::t ^:t -:t f:t *:t <:t
+
+* Easy Change Directory
+
+  : (require 'ecd)
+  : (global-unset-key "\M-c")
+  : (global-set-key (kbd "M-c") 'ecd)
+  : (setq ecd-list
+  :       '(
+  :         (?d . "~/Desktop")
+  :         (?e . "~/.emacs.d")
+  :         (?n . "~/.emacs.d/snippets")
+  :         (?s . "~/src")
+  :         (?h . "~")
+  :         ))
+
+  On eshell, type M-c e
+
+  : $ pushd ~/.emacs.d
+
+  On other mode, type M-c e
+
+  : M-x eshell
+  : $ pushd ~/.emacs.d
+  : M-x dired-jump
