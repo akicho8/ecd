@@ -36,13 +36,13 @@
 ;;           (?r . "/usr/local/rvm/gems/ruby-1.9.3-p286/gems")
 ;;           (?d . "~/Desktop")
 ;;           ))
-;;   
+;;
 ;;   On eshell mode, type M-c e
-;;   
+;;
 ;;     $ pushd ~/.emacs.d
-;;   
+;;
 ;;   On other mode, type M-c e
-;;   
+;;
 ;;     M-x eshell
 ;;     $ pushd ~/.emacs.d
 ;;     M-x dired-jump
@@ -63,10 +63,11 @@
 
 (defvar ecd-debug nil "*for debug")
 
-(defun ecd ()
+(defun ecd (&optional num)
   "Easy Change Directory"
-  (interactive)
-  (let (ch dir before-majar-mode)
+  (interactive "p")
+  (let (ch dir before-majar-mode minibuffer-active)
+    (setq minibuffer-active (active-minibuffer-window))
     (setq before-majar-mode major-mode)
     (when (get-buffer "*ecd*")
       (kill-buffer "*ecd*"))
@@ -80,17 +81,22 @@
       (setq ch (read-char (format "cd ? " default-directory))))
     (setq dir (cdr (assq ch ecd-list)))
     (when dir
-      (eshell)
-      (goto-char (point-max))
-      (eshell-bol)
-      (unless (eobp)
-        (kill-line))
-      (insert (concat "pushd " dir))
-      (eshell-send-input)
-      (unless (eq before-majar-mode 'eshell-mode)
-        (dired-jump)))
+      (if (and (= num 1) (not minibuffer-active))
+          (progn
+            (eshell)
+            (goto-char (point-max))
+            (eshell-bol)
+            (unless (eobp)
+              (kill-line))
+            (insert (concat "pushd " dir))
+            (eshell-send-input)
+            (unless (eq before-majar-mode 'eshell-mode)
+              (dired-jump)))
+        (kill-new dir)))
     (when (get-buffer "*ecd*")
-      (kill-buffer "*ecd*"))))
+      (kill-buffer "*ecd*"))
+    (when minibuffer-active
+      (select-window (minibuffer-window)))))
 
 (provide 'ecd)
 ;;; ecd.el ends here

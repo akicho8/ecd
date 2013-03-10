@@ -3,17 +3,19 @@
 
 * Easy Change Directory
 
+  Example:
+
   : (require 'ecd)
+  :
   : (global-unset-key "\M-c")
   : (global-set-key (kbd "M-c") 'ecd)
+  :
   : (setq ecd-list
-  :       '(
-  :         (?d . "~/Desktop")
+  :       '((?/ . "/")
+  :         (?d . "~/Downloads")
   :         (?e . "~/.emacs.d")
-  :         (?n . "~/.emacs.d/snippets")
   :         (?s . "~/src")
-  :         (?h . "~")
-  :         ))
+  :         (?h . "~")))
 
   On eshell, type M-c e
 
@@ -24,3 +26,5 @@
   : M-x eshell
   : $ pushd ~/.emacs.d
   : M-x dired-jump
+
+  I will either put the prefix of C-u, without moving, if you run from the minibuffer, and just put the path to kill-ring
