@@ -1,6 +1,6 @@
 ;;; ecd.el --- Easy Change Directory
 
-;; Copyright (C) 2013  Free Software Foundation, Inc.
+;; Copyright (C) 2013,2014  Free Software Foundation, Inc.
 
 ;; Author: akicho8 <akicho8@gmail.com>
 ;; Keywords: eshell, dired
@@ -27,15 +27,12 @@
 ;;   (require 'ecd)
 ;;   (global-unset-key "\M-c")
 ;;   (global-set-key (kbd "M-c") 'ecd)
+;;
 ;;   (setq ecd-list
-;;         '(
-;;           (?s . "~/src")
-;;           (?e . "~/.emacs.d")
-;;           (?n . "~/.emacs.d/snippets")
-;;           (?h . "~")
-;;           (?r . "/usr/local/rvm/gems/ruby-1.9.3-p286/gems")
-;;           (?d . "~/Desktop")
-;;           ))
+;;         '((?/ . "/")
+;;           (?~ . "~/")
+;;           (?d . "~/Downloads")
+;;           (?e . "~/.emacs.d")))
 ;;
 ;;   On eshell mode, type M-c e
 ;;
@@ -54,10 +51,10 @@
 
 (defvar ecd-list
   '(
-    (?d . "~/Desktop")
-    (?o . "~/Documents")
-    (?~ . "~")
-    (?g . "/usr/local/rvm/gems/ruby-1.9.3-p286/gems")
+    (?/ . "/")
+    (?~ . "~/")
+    (?d . "~/Downloads")
+    (?e . "~/.emacs.d")
     )
   "*Char and directory pair list")
 

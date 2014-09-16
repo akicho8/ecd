@@ -3,19 +3,15 @@
 
 * Easy Change Directory
 
-  Example:
-
   : (require 'ecd)
-  :
   : (global-unset-key "\M-c")
   : (global-set-key (kbd "M-c") 'ecd)
-  :
+  : 
   : (setq ecd-list
   :       '((?/ . "/")
+  :         (?~ . "~/")
   :         (?d . "~/Downloads")
-  :         (?e . "~/.emacs.d")
-  :         (?s . "~/src")
-  :         (?h . "~")))
+  :         (?e . "~/.emacs.d")))
 
   On eshell, type M-c e
 
